@@ -1,4 +1,4 @@
-import { UPDATE } from "../constants/constants"
+import {  UPDATE } from "../constants/constants"
 
 const initialState={
     task:'',
@@ -13,6 +13,7 @@ const objectReducer=(state=initialState,action)=>{
                 task:action.payload.task,
                 completed:action.payload.completed
             }
+           
             default: return state
     }
 }

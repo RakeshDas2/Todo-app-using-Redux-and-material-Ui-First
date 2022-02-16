@@ -4,7 +4,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useSelector,useDispatch} from 'react-redux'
-import { deleteData, showDialoge, updateIndex, updateObject } from '../redux/actions/action';
+import { completedTask, deleteData, showDialoge, updateIndex, updateObject } from '../redux/actions/action';
 
 
 function TableData() {
@@ -14,7 +14,7 @@ function TableData() {
 
    const dispatch=useDispatch()
 
-   console.log(reciveObject);
+   console.log(todoStore);
 
    const editDa=(index,ele)=>{
           dispatch(showDialoge(true))
@@ -28,7 +28,7 @@ function TableData() {
    }
 
    const updateComplete=(index)=>{
-       console.log(index);
+       dispatch(completedTask(index))
    }
 
   return (
@@ -39,7 +39,7 @@ function TableData() {
                     <TableBody>
                         {todoStore.finalData.map((ele,index)=>{
                             return <TableRow key={index}>
-                                <TableCell><Typography variant='h5' >{ele.task}</Typography></TableCell>
+                                <TableCell><Typography variant='h5' style={ele.completed ? {color:'blue'}:null} >{ele.task}</Typography></TableCell>
                                 <TableCell style={{display:'flex'}}>
                                     <Box pl={2}><EditIcon onClick={()=>{editDa(index,ele)}}/></Box>
                                 <Box pl={2}><DoneIcon onClick={()=>{updateComplete(index)}}/></Box>
