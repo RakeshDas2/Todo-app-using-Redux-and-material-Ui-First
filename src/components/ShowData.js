@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { Button, Card, CardActionArea, CardActions, CardContent, Container, Grid, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { useDispatch, useSelector } from 'react-redux';
-import { addData } from '../redux/actions/action';
+import { useDispatch} from 'react-redux';
+import { addData} from '../redux/actions/action';
 function ShowData() {
      
+
     const dispatch = useDispatch()
+
+  
 
     const [data, setData] = useState({
         task: '',

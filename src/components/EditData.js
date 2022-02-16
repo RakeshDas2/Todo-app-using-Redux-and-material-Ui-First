@@ -1,23 +1,29 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { showDialoge } from '../redux/actions/action'
+import { editData, showDialoge } from '../redux/actions/action'
 
 function EditData() {
     const showData = useSelector(state => state.dialogeReducer)
     const todoState=useSelector(state=>state.todoReducer)
-    
+    const storeIndex=useSelector(state=>state.indexReducer)
+    const storeObject = useSelector(state=>state.objectReducer)
     const [upData,setUpData]=useState({
-        task:todoState.finalData.task,
+        task:'',
         completed:false
     })
+const recivedData=storeObject
 
-   
+const index=storeIndex.index
+
+  useEffect(()=>{
+      setUpData(recivedData)
+  },[storeIndex])
 
     const dispatch = useDispatch()
-    console.log(showData);
+   
     const modifyData = () => {
-
+       dispatch(editData({upData,index}))
     }
     const closeDialoge = () => {
         dispatch(showDialoge(false))
@@ -26,7 +32,6 @@ function EditData() {
      const upDataCopy={...upData}
      upDataCopy[e.target.name]=e.target.value
      setUpData(upDataCopy)
-        console.log(upData);
     }
 
     return (

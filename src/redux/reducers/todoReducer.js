@@ -26,7 +26,7 @@ const todoReducer = (state = initialState, action) => {
 
             case EDIT:
                 const finalDataCopy=[...state.finalData]
-                finalDataCopy[action.payload.index]=action.payload.ele
+                finalDataCopy[action.payload.index]=action.payload.upData
                  return {
                      ...state,
                      finalData:finalDataCopy
