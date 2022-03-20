@@ -7,14 +7,14 @@ const initialState = {
 const todoReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD:
-            const newArray=[...state.finalData]
-            const findIndex=newArray.findIndex(ele=>{
-                return ele.task===action.payload.task
+            const newArray = [...state.finalData]
+            const findIndex = newArray.findIndex(ele => {
+                return ele.task === action.payload.task
             })
 
-            if(findIndex===-1){
+            if (findIndex === -1) {
                 newArray.push(action.payload)
-            }else{
+            } else {
                 console.log('Task already added');
             }
             return {
@@ -31,22 +31,22 @@ const todoReducer = (state = initialState, action) => {
                 finalData: newFianlData
             }
 
-            case EDIT:
-                const finalDataCopy=[...state.finalData]
-                finalDataCopy[action.payload.index]=action.payload.upData
-                 return {
-                     ...state,
-                     finalData:finalDataCopy
-                 }
+        case EDIT:
+            const finalDataCopy = [...state.finalData]
+            finalDataCopy[action.payload.index] = action.payload.upData
+            return {
+                ...state,
+                finalData: finalDataCopy
+            }
 
-                 case COMPLETED:
-                     const updatedDataCopy=[...state.finalData]
-                    console.log( updatedDataCopy[action.payload]);
-                     updatedDataCopy[action.payload].completed=!updatedDataCopy[action.payload].completed
-                     return{
-                         ...state,
-                         finalData:updatedDataCopy
-                     }
+        case COMPLETED:
+            const updatedDataCopy = [...state.finalData]
+            console.log(updatedDataCopy[action.payload]);
+            updatedDataCopy[action.payload].completed = !updatedDataCopy[action.payload].completed
+            return {
+                ...state,
+                finalData: updatedDataCopy
+            }
 
         default: return state
     }
